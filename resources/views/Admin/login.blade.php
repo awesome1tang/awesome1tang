@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>后台登录-X-admin1.1</title>
+	<title>天啊,这不是后台吗,getshell</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/css/font.css">
@@ -15,7 +15,7 @@
     <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-    <div class="login-logo"><h1>X-ADMIN V1.1</h1></div>
+    <div class="login-logo"><h1>天啊,这不是后台吗,getshell</h1></div>
     <div class="login-box">
         <form class="layui-form layui-form-pane" action="">
               
@@ -32,6 +32,18 @@
                 <label class="layui-form-label login-form"><i class="iconfont">&#xe82b;</i></label>
                 <div class="layui-input-inline login-inline">
                   <input type="text" name="password" lay-verify="required" placeholder="请输入你的密码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <label class="login-title" for="username">验证码</label>
+            <div class="layui-form-item">
+                <label class="layui-form-label login-form"><i class="iconfont">&#xe6b8;</i></label>
+                <div class="layui-input-inline login-inline" >
+                  <div  style="width:50%;float:left;">
+                  <input type="text" name="username" style="width:100px" lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input">
+                  </div>
+                  <div style="width:50%;float:left;">
+                  <img id="captcha" src="{{route('captcha_create')}}" width="90px" height="40px" onclick="reflesh()">
+                    </div>
                 </div>
             </div>
             <div class="form-actions">
@@ -73,8 +85,21 @@
                 return false;
               });
             });
-        })
+        });
         
+      function reflesh(){
+
+        //$('#captcha').src="http://192.168.43.195/admin/captcha?"+Math.random();
+
+        var value = $('#captcha').src="http://192.168.43.195/admin/captcha?"+Math.random();
+        //console.log('232323232');
+
+        $('#captcha').attr('src',value);
+
+        console.log(value);
+        }
+
+
     </script>
     <script>
     //百度统计可去掉

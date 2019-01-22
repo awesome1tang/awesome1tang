@@ -4,6 +4,16 @@
 
 @section('content')
 
+  <div class="form-group"> 
+  @if (count($errors) > 0) 
+  <div class="alert alert-danger">
+  <ul style="color:red;">
+  @foreach ($errors->all() as $error)
+  <li>{{ $error }}</li> @endforeach </ul>
+
+  </div> @endif
+  </div>
+
 <form id="send">
   <div class="form-group">
     <label for="exampleInputEmail1">广告名字</label>

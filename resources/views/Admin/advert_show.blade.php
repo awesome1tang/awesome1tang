@@ -40,44 +40,45 @@
                         <th>
                             ID
                         </th>
-                        <th>
+                        <th width="200px">
                             广告名
                         </th>
-                        <th>
+                        <th width="200px" >
                             指向地址
                         </th>
-                        <th>
+                        <th  width="200px" >
                             图片
-                        </th>
+                        </th width="200px"  >
                         <th>
                             状态
                         </th>
-                        <th>
+                        <th width="200px"  >
                             操作
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody  id="mytable">
+               
                 @foreach($list as $value )
-                    <tr> 
+                        <tr> 
                         <td>
                             <input type="checkbox" value="1" name="" style="display:block">
                         </td>
-                        <td id="get_id">
+                        <td>
                             {{$value->id}}
                         </td>
-                        <td>
+                        <td class="name">
                             {{$value->name}}
                         </td>
                         <td >
                             {{$value->url}}
                         </td>
                         <td >
-                            {{$value->pic}}
+                           <img class="img-rounded" src="/uploads/{{$value->pic}}" width="100px" height="100px" alt="">
                         </td>
                         
                        
-                        <td class="td-status">
+                        <td class="td-status" id="status{{$value->id}}" onclick="status_change({{$value->id}})">
                             <span class="layui-btn layui-btn-normal layui-btn-mini">
                                 @if($value->status ==0)
                                 {{'已禁用'}}
@@ -94,7 +95,7 @@
                                 <i class="layui-icon">&#xe642;</i>
                             </a>
                            
-                            <a id="delete" title="删除" href="javascript:;" 
+                            <a id="delete" onclick="remove({{$value->id}})" title="删除" href="javascript:;" 
                             style="text-decoration:none">
                                 <i class="layui-icon">&#xe640;</i>
                             </a>
@@ -102,7 +103,7 @@
                         </td>
                     </tr>
                    @endforeach
-                  
+              
                 </tbody>
             </table>
             </div>
@@ -158,28 +159,8 @@
                 contentType:false,
                 success:function(data){
 
-                    //console.log(data);
-                //var Obj = $("").append($(data));
-                   //Obj= $(data);
-                   //var Obj = $("#table").html(data);
-               // console.log(Obj);
-                    //var result =$(data).find("#table");
-            //$('#table').append($(data.responseText).find('#table').html()).show('#table');
-          
-             //var table = $(data.responseHtml)
-            // console.log(data);
-            //$("#table").html(data);
-                    //var table =data;
-                   // newl = $.parseHTML(data.responseText, document, true);    
-                    //var newl = $.parseHTML(table, document, true);
-
-                    //$('#test').find('test').html();
-                    
-                    ///console.log(newl);
-                     //var html = $(data).find('#table');
-                     //$('#alltable').html(data);
-                     $("#allBody").html(data);         //type:'get',
-
+            
+                     $("#allBody").html(data);        
 
                 }
 
@@ -187,35 +168,127 @@
                 })
         })
 
+        function remove(id){
+
+            var id =id;
+
+
+
+          var e = confirm('你确定要删除')
+                //console.log('2342343');
+            if(e == 1){
+                 
+
+           $.get("{{route('advert_delete')}}",{id:id},function(res){
+           
+
+
+            $('#delete').parent().parent().remove();
+
+       
+
+
+
+           }) 
 
 
 
 
-        $('#delete i').click([],function(){
 
+        }
 
-            console.log('123');
-           var id = $('#get_id').text(); 
-            console.log(id);
-
-
-            /*$.ajax({
-
-                'url':{{route('advert_delete')}},
+            }
 
 
 
 
 
+            //状态修改
+            function status_change(id){
+
+               var status = $('#status'+id).children().html().trim();
+              
+              if(status == '已禁用'){
+                  var curr_status= 0;
+
+               }
+
+               if(status == '已开启'){
+
+                 var curr_status =1;
+               }
+
+                
+                     
+             
+              $.get("{{route('advert_status')}}",{id:id,status:curr_status},function(data){
+                            
+                        
+                        if(data.res == 1){
+
+                           $('#status'+id).children().html('已开启');
+                        }
+                        if(data.res == 0){
+
+                            $('#status'+id).children().html('已禁用');
+                        }
+
+              })
+            
+               
+
+            }
+
+            //填写编写
+             $('.name').dblclick(function(){
+
+                var um = $(this);
+
+        //获取td里面的内容
+                var ux = $(this).text().trim();
+
+        //创建input输入框
+                var ipu = $('<input type="text" />');
+
+                $(this).empty();
+
+                $(this).append(ipu);
+
+                ipu.val(ux);
+
+                ipu.focus();
+
+                ipu.select();
+
+                ipu.blur(function(){
+            //获取输入的新值
+                var uv = $(this).val().trim();
+
+                if(uv == ''){
+
+                alert('输入的值不能为空');
+                return;
+                }
+
+            //获取id
+            var ids = $(this).parent().prev().text().trim();
 
 
-            })*/
+            $.post('/admin/select_input',{name:uv,id:ids},function(data){
 
+                if(data == '1'){
 
+                    um.text(uv);
+                } else {
 
+                    um.text(ux);
+                }
+            })
         })
 
 
+
+    })
 
 
 

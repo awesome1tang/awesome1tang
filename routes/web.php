@@ -57,7 +57,19 @@ Route::any('/admin/advert_get','Admin\AdvertController@advert_get')->name('adver
 Route::any('/admin/advert_test','Admin\AdvertController@advert_test')->name('advert_test');
 
 
-Route::any('/admin/advert_delete','Admin\AdvertController@advert_delete')->name('advert_delete');
+Route::get('/admin/advert_delete','Admin\AdvertController@advert_delete')->name('advert_delete');
+
+
+Route::get('/admin/advert_status','Admin\AdvertController@advert_status')->name('advert_status');
 
 
 
+Route::any('/admin/advert_status','Admin\AdvertController@advert_status')->name('advert_status');
+
+
+//验证码机制        全站使用
+
+
+Route::any('/admin/captcha','Admin\CaptchaController@captcha_create')->name('captcha_create');
+
+Route::any('/admin/captcha_check','Admin\CaptchaController@captcha_check')->name('captcha_check');
