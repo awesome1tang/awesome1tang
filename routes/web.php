@@ -30,10 +30,21 @@ Route::post('home/search','Home\IndexController@search')->name('home/search');
 
 
 
+
+
+
+
+
+
 //后台路由设置
 Route::get('/admin/index','Admin\IndexController@index')->name('index');
 
-Route::get('/admin/login','Admin\indexController@login');
+
+//登录验证
+Route::get('/admin/login','Admin\LoginController@show');
+
+
+Route::any('/admin/login_check','Admin\LoginController@check_login')->name('login_check');
 
 
 Route::group([],function(){
@@ -72,4 +83,46 @@ Route::any('/admin/advert_status','Admin\AdvertController@advert_status')->name(
 
 Route::any('/admin/captcha','Admin\CaptchaController@captcha_create')->name('captcha_create');
 
-Route::any('/admin/captcha_check','Admin\CaptchaController@captcha_check')->name('captcha_check');
+
+
+
+
+
+
+
+
+
+
+
+
+Route::group(['middleware'=>'login'],function(){
+
+Route::any('/admin/captcha_check','Admin\CaptchaController@captcha_check')->name('captcha_check');    
+    });
+
+
+
+
+
+//分类管理
+
+
+Route::any('/admin/category_add','Admin\CategoryController@add')->name('category_add');
+
+Route::any('/admin/category_list','Admin\CategoryController@list')->name('category_list');
+
+
+Route::any('/admin/category_do_add','Admin\CategoryController@do_add')->name('category_do_add');
+
+
+
+
+//商品管理
+
+Route::any('/admin/goods_add','Admin\GoodsController@add')->name('goods_add');
+
+Route::any('/admin/goods_do_add','Admin\GoodsController@do_add')->name('goods_do_add');
+
+Route::any('/admin/goods_show','Admin\GoodsController@show')->name('goods_show');
+
+Route::any('/admin/goods_edit','Admin\GoodsController@edit')->name('goods_edit');

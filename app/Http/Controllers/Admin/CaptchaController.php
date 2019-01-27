@@ -6,7 +6,7 @@
     use App\Model\Admin\User;
     use Gregwar\Captcha\CaptchaBuilder;
     use Gregwar\Captcha\PhraseBuilder;
-
+    use Illuminate\Support\Facades\Cookie;
 
     class CaptchaController extends Controller
     {
@@ -45,14 +45,12 @@
 
 
 
-        public function captcha_check(){
+        public function captcha_check(Request $request){
 
 
-                
-
-
-
-
+                        
+    
+           echo $request->cookie('user');
 
 
 

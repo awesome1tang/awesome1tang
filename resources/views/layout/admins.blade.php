@@ -10,12 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="csrf-token" content="{{csrf_token()}}">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/admins/css/font.css">
     <link rel="stylesheet" href="/admins/css/xadmin.css">
     <link rel="stylesheet" href="/admins/css/bootstrap.css">
     <link rel="stylesheet" href="/admins/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/file/css/fileinput.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
       <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>  
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
@@ -24,6 +25,7 @@
     <script type="text/javascript" src="/admins/js/xadmin.js"></script>
     <script type="text/javascript" src="/admins/js/bootstrap.js"></script>
     <script type="text/javascript" src="/admins/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/file/js/fileinput.js"></script>
     
 </head>
 <body id="allBody" >
@@ -136,6 +138,68 @@
                         </li>
                     </ul>
                 </li>
+
+                 <!-- 会员管理 -->
+                <li class="list"  id="left_mean">
+                    <a href="javascript:;">
+                        <i class="iconfont">&#xe70b;</i>
+                        分类管理
+                        <i class="iconfont nav_right">&#xe697;</i>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="{{route('category_add')}}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                添加分类
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('category_list')}}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                分类列表
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </li>
+
+
+                <li class="list"  id="left_mean">
+                    <a href="javascript:;">
+                        <i class="iconfont">&#xe70b;</i>
+                        产品管理
+                        <i class="iconfont nav_right">&#xe697;</i>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="{{route('goods_add')}}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                添加产品
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('goods_show')}}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                商品列表
+                            </a>
+                        </li>
+                         <li>
+                            <a href="{{route('goods_edit')}}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                商品编辑
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
 
                 <!-- 管理员管理 -->
                 <li class="list" id="left_mean">

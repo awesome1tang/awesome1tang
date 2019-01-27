@@ -17,7 +17,7 @@
 <body>
     <div class="login-logo"><h1>天啊,这不是后台吗,getshell</h1></div>
     <div class="login-box">
-        <form class="layui-form layui-form-pane" action="">
+        <form class="layui-form layui-form-pane" action="{{route('login_check')}}" method="post">
               
             <h3>登录你的帐号</h3>
             <label class="login-title" for="username">帐号</label>
@@ -39,18 +39,20 @@
                 <label class="layui-form-label login-form"><i class="iconfont">&#xe6b8;</i></label>
                 <div class="layui-input-inline login-inline" >
                   <div  style="width:50%;float:left;">
-                  <input type="text" name="username" style="width:100px" lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input">
+                  <input type="text" name="check_code" style="width:100px" lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input">
                   </div>
                   <div style="width:50%;float:left;">
                   <img id="captcha" src="{{route('captcha_create')}}" width="90px" height="40px" onclick="reflesh()">
                     </div>
                 </div>
             </div>
+           
             <div class="form-actions">
-                <button class="btn btn-warning pull-right" lay-submit lay-filter="login"  type="submit">登录</button> 
+                <button class="btn btn-warning pull-right" id="submit" lay-submit lay-filter="login"  type="submit">登录</button> 
                 <div class="forgot"><a href="#" class="forgot">忘记帐号或者密码</a></div>     
             </div>
-        </form>
+            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+            </form>
     </div>
 	<div class="bg-changer">
         <div class="swiper-container changer-list">
@@ -89,11 +91,10 @@
         
       function reflesh(){
 
-        //$('#captcha').src="http://192.168.43.195/admin/captcha?"+Math.random();
+       
 
         var value = $('#captcha').src="http://192.168.43.195/admin/captcha?"+Math.random();
-        //console.log('232323232');
-
+     
         $('#captcha').attr('src',value);
 
         console.log(value);
@@ -101,15 +102,11 @@
 
 
     </script>
+
+
+
     <script>
-    //百度统计可去掉
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
+       
     </script>
 </body>
 </html>

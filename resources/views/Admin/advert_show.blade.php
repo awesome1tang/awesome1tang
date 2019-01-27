@@ -40,19 +40,19 @@
                         <th>
                             ID
                         </th>
-                        <th width="200px">
+                        <th width="100px">
                             广告名
                         </th>
-                        <th width="200px" >
+                        <th width="100px" >
                             指向地址
                         </th>
-                        <th  width="200px" >
+                        <th  width="100px" >
                             图片
-                        </th width="200px"  >
+                        </th width="100px"  >
                         <th>
                             状态
                         </th>
-                        <th width="200px"  >
+                        <th width="100px"  >
                             操作
                         </th>
                     </tr>
@@ -74,7 +74,7 @@
                             {{$value->url}}
                         </td>
                         <td >
-                           <img class="img-rounded" src="/uploads/{{$value->pic}}" width="100px" height="100px" alt="">
+                           <img class="img-rounded" src="/uploads/{{$value->pic}}" width="100px" height="60px" alt="">
                         </td>
                         
                        
